@@ -125,6 +125,14 @@ class PrefUtilsViewController: PreferenceViewController, PreferenceWindowEmbedda
     }
   }
 
+  @IBAction func clearSubSyncCacheBtnAction(_ sender: Any) {
+    Utility.quickAskPanel("clear_cache", sheetWindow: view.window) { respond in
+      guard respond == .alertFirstButtonReturn else { return }
+      try? FileManager.default.removeItem(atPath: Utility.subSyncCacheURL.path)
+      Utility.createDirIfNotExist(url: Utility.subSyncCacheURL)
+    }
+  }
+  
   @IBAction func clearCacheBtnAction(_ sender: Any) {
     Utility.quickAskPanel("clear_cache", sheetWindow: view.window) { respond in
       guard respond == .alertFirstButtonReturn else { return }

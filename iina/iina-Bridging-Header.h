@@ -4,11 +4,19 @@
 #import <mpv/render.h>
 #import <mpv/render_gl.h>
 
+#import <alass.h>
+
 #import <stdio.h>
 #import <stdlib.h>
 #import "FixedFontManager.h"
 #import "ObjcUtils.h"
 #import "FFmpegController.h"
+
+#import <libavcodec/avcodec.h>
+#import <libavformat/avformat.h>
+#import <libswresample/swresample.h>
+#import <libavutil/opt.h>
+#import <libavutil/error.h>
 
 #import <CommonCrypto/CommonCrypto.h>
 

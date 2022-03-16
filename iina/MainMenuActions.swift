@@ -377,6 +377,10 @@ extension MainMenuActionHandler {
     }
   }
 
+  @objc func subSync(_ sender: NSMenuItem) {
+    player.subSync.syncOrCancel()
+  }
+  
   @objc func menuCycleTrack(_ sender: NSMenuItem) {
     switch sender.tag {
     case 0: player.mpv.command(.cycle, args: ["video"])

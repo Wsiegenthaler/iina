@@ -66,7 +66,10 @@ enum OSDMessage {
   case startFindingSub(String)  // sub source
   case foundSub(Int)
   case downloadedSub(String)  // filename
+  case unsupportedSub
   case savedSub
+  case subSyncProgress
+  case subSyncError
   case cannotLogin
   case fileError
   case networkError
@@ -274,10 +277,28 @@ enum OSDMessage {
         NSLocalizedString("osd.sub_downloaded", comment: "Subtitle downloaded"),
         .withText(filename)
       )
+      
+    case .unsupportedSub:
+      return (
+        NSLocalizedString("alert.unsupported_sub", comment: "Unsupported external subtitle."),
+        .normal
+      )
 
     case .savedSub:
       return (
         NSLocalizedString("osd.sub_saved", comment: "Subtitle saved"),
+        .normal
+      )
+      
+    case .subSyncProgress:
+      return (
+        NSLocalizedString("osd.sub_sync_progress", comment: "Syncing subtitle..."),
+        .normal
+      )
+      
+    case .subSyncError:
+      return (
+        NSLocalizedString("osd.sub_sync_error", comment: "Sync error"),
         .normal
       )
 

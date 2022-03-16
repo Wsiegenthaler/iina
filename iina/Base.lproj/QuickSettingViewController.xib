@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -49,6 +49,9 @@
                 <outlet property="subPosSlider" destination="lzW-d6-Asr" id="4n0-Xj-8qN"/>
                 <outlet property="subScaleResetBtn" destination="8ZC-Wx-nt7" id="fK9-bQ-Mxl"/>
                 <outlet property="subScaleSlider" destination="B8f-KH-BaO" id="dO9-In-ie0"/>
+                <outlet property="subSyncBtn" destination="z2t-e1-ksc" id="irN-JJ-x02"/>
+                <outlet property="subSyncCancelBtn" destination="hNA-F3-P5s" id="zsJ-fp-Okh"/>
+                <outlet property="subSyncProgress" destination="Qxg-KE-eMR" id="U9d-xu-vo5"/>
                 <outlet property="subTabBtn" destination="rH3-pU-mFc" id="Rgo-kh-2wW"/>
                 <outlet property="subTableView" destination="2vU-hm-gGB" id="RK0-Fm-p9X"/>
                 <outlet property="subTextBgColorWell" destination="Ure-tT-JEy" id="NAH-ul-PxD"/>
@@ -555,6 +558,17 @@
                                                                         <action selector="customSpeedEditFinishedAction:" target="-2" id="f1u-Mu-w4S"/>
                                                                     </connections>
                                                                 </textField>
+                                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MuS-g5-hvY">
+                                                                    <rect key="frame" x="19" y="237" width="91" height="18"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                    <buttonCell key="cell" type="check" title="Deinterlace" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="TXm-bA-7y3">
+                                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="deinterlaceBtnAction:" target="-2" id="NFo-do-3wt"/>
+                                                                    </connections>
+                                                                </button>
                                                                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="IWj-Dg-ZDI">
                                                                     <rect key="frame" x="0.0" y="210" width="360" height="5"/>
                                                                 </box>
@@ -1874,6 +1888,29 @@
                                                                         <action selector="searchOnlineAction:" target="-2" id="z9B-mh-JoN"/>
                                                                     </connections>
                                                                 </segmentedControl>
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z2t-e1-ksc" userLabel="Sync Btn">
+                                                                    <rect key="frame" x="306" y="369" width="54" height="27"/>
+                                                                    <buttonCell key="cell" type="push" title="Sync" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" userInterfaceLayoutDirection="rightToLeft" imageScaling="proportionallyDown" inset="2" id="Yu4-SR-PGS">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="smallSystem"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="subSyncBtnAction:" target="-2" id="Dc0-hR-yyK"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hNA-F3-P5s" userLabel="Sync Cancel Btn">
+                                                                    <rect key="frame" x="267" y="369" width="93" height="27"/>
+                                                                    <buttonCell key="cell" type="push" title="Cancel Sync" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" userInterfaceLayoutDirection="rightToLeft" imageScaling="proportionallyDown" inset="2" id="rFb-nO-pg1">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="smallSystem"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="subSyncCancelBtnAction:" target="-2" id="hZs-9u-qqt"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Qxg-KE-eMR" userLabel="Sync Progress">
+                                                                    <rect key="frame" x="252" y="376" width="16" height="16"/>
+                                                                </progressIndicator>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="LMp-7Y-Rxg" secondAttribute="trailing" id="0Gl-lc-Bm7"/>
@@ -1888,19 +1925,24 @@
                                                                 <constraint firstItem="3xe-mv-ORw" firstAttribute="leading" secondItem="Wuf-PX-OYd" secondAttribute="leading" constant="19" id="C4V-Gw-CZp"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3xe-mv-ORw" secondAttribute="trailing" constant="35" id="CWa-3H-hWP"/>
                                                                 <constraint firstItem="r77-VA-Z1b" firstAttribute="top" secondItem="dXz-x4-sm5" secondAttribute="bottom" id="Cev-r5-9om"/>
+                                                                <constraint firstAttribute="trailing" secondItem="z2t-e1-ksc" secondAttribute="trailing" constant="6" id="DM5-EZ-eLY"/>
                                                                 <constraint firstItem="YIE-pv-gCK" firstAttribute="leading" secondItem="zQu-u6-goi" secondAttribute="trailing" constant="8" id="DPc-T2-84N"/>
                                                                 <constraint firstAttribute="bottom" secondItem="dXz-x4-sm5" secondAttribute="bottom" constant="37" id="Doh-No-t5F"/>
                                                                 <constraint firstItem="dXz-x4-sm5" firstAttribute="top" secondItem="VdJ-nq-zaM" secondAttribute="bottom" constant="2" id="Fdp-D4-VPU"/>
                                                                 <constraint firstItem="3xe-mv-ORw" firstAttribute="top" secondItem="1Fq-4o-8Hh" secondAttribute="bottom" constant="20" id="I4y-iB-fWM"/>
                                                                 <constraint firstItem="mYH-DV-e4F" firstAttribute="top" secondItem="Wuf-PX-OYd" secondAttribute="top" constant="20" id="Izb-ki-XeU"/>
+                                                                <constraint firstAttribute="trailing" secondItem="hNA-F3-P5s" secondAttribute="trailing" constant="6" id="JDJ-bZ-Cav"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="M2U-rq-X2L" secondAttribute="trailing" id="LH3-mi-eMt"/>
                                                                 <constraint firstItem="eOz-bB-vzM" firstAttribute="leading" secondItem="dXz-x4-sm5" secondAttribute="trailing" constant="16" id="LTf-pu-8fz"/>
                                                                 <constraint firstItem="LMp-7Y-Rxg" firstAttribute="leading" secondItem="Wuf-PX-OYd" secondAttribute="leading" id="O1s-aJ-7eK"/>
                                                                 <constraint firstItem="mYH-DV-e4F" firstAttribute="leading" secondItem="Wuf-PX-OYd" secondAttribute="leading" constant="19" id="O5J-FT-DtN"/>
                                                                 <constraint firstItem="VbE-TV-lb5" firstAttribute="leading" secondItem="dXz-x4-sm5" secondAttribute="leading" id="Q0F-ty-AhB"/>
+                                                                <constraint firstItem="hNA-F3-P5s" firstAttribute="centerY" secondItem="Qxg-KE-eMR" secondAttribute="centerY" id="Rde-Cy-FrO"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cOv-Yl-KdH" secondAttribute="trailing" constant="35" id="SRy-t5-N0K"/>
+                                                                <constraint firstItem="hNA-F3-P5s" firstAttribute="leading" secondItem="Qxg-KE-eMR" secondAttribute="trailing" constant="5" id="Sps-sc-PPS"/>
                                                                 <constraint firstAttribute="trailing" secondItem="eOz-bB-vzM" secondAttribute="trailing" constant="24" id="VGX-aQ-yaY"/>
                                                                 <constraint firstItem="M2U-rq-X2L" firstAttribute="top" secondItem="LMp-7Y-Rxg" secondAttribute="bottom" constant="20" id="Y58-bK-q43"/>
+                                                                <constraint firstItem="1Fq-4o-8Hh" firstAttribute="top" secondItem="z2t-e1-ksc" secondAttribute="bottom" constant="6" id="ZPY-NG-cGK"/>
                                                                 <constraint firstItem="1Fq-4o-8Hh" firstAttribute="leading" secondItem="Wuf-PX-OYd" secondAttribute="leading" id="eCR-6x-gEL"/>
                                                                 <constraint firstItem="1Fq-4o-8Hh" firstAttribute="top" secondItem="mYH-DV-e4F" secondAttribute="bottom" constant="8" id="hl3-X4-nod"/>
                                                                 <constraint firstItem="cOv-Yl-KdH" firstAttribute="top" secondItem="zQu-u6-goi" secondAttribute="bottom" constant="27" id="jYB-bh-14P"/>
@@ -1910,6 +1952,7 @@
                                                                 <constraint firstItem="kzp-GR-Sy4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VbE-TV-lb5" secondAttribute="trailing" id="llG-p4-ckS"/>
                                                                 <constraint firstItem="VbE-TV-lb5" firstAttribute="top" secondItem="dXz-x4-sm5" secondAttribute="bottom" id="nBf-Bg-Rdb"/>
                                                                 <constraint firstItem="zQu-u6-goi" firstAttribute="leading" secondItem="Wuf-PX-OYd" secondAttribute="leading" constant="20" id="oAh-Z4-paB"/>
+                                                                <constraint firstItem="1Fq-4o-8Hh" firstAttribute="top" secondItem="hNA-F3-P5s" secondAttribute="bottom" constant="6" id="qaa-gA-JtL"/>
                                                                 <constraint firstItem="eOz-bB-vzM" firstAttribute="centerY" secondItem="dXz-x4-sm5" secondAttribute="centerY" constant="-1" id="rgl-9k-oY7"/>
                                                                 <constraint firstItem="dXz-x4-sm5" firstAttribute="leading" secondItem="Wuf-PX-OYd" secondAttribute="leading" constant="20" id="t39-NF-kSH"/>
                                                                 <constraint firstItem="LMp-7Y-Rxg" firstAttribute="top" secondItem="3xe-mv-ORw" secondAttribute="bottom" constant="8" id="uj7-Lc-oLk"/>
@@ -2245,7 +2288,7 @@
                                             <rect key="frame" x="-100" y="-100" width="360" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.22222222222222221" horizontal="NO" id="3ZS-ug-kkq">
+                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="3ZS-ug-kkq">
                                             <rect key="frame" x="344" y="0.0" width="16" height="823"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>

@@ -75,6 +75,8 @@
 "osd.sub_found" = "%d subtitles found. Downloading…";
 "osd.sub_downloaded" = "Subtitle downloaded";
 "osd.sub_saved" = "Subtitle saved";
+"osd.sub_sync_progress" = "Syncing subtitles...";
+"osd.sub_sync_error" = "Sync error";
 "osd.network_error" = "Network error";
 "osd.file_error" = "Error reading file";
 "osd.cannot_login" = "Cannot login";
@@ -123,6 +125,8 @@
 "menu.audio_delay_down" = "Audio Delay - %.1fs";
 "menu.sub_delay_up" = "Subtitle Delay + %.1fs";
 "menu.sub_delay_down" = "Subtitle Delay - %.1fs";
+"menu.sub_sync.sync" = "Sync Current Subtitle";
+"menu.sub_sync.cancel" = "Cancel Sync (%.0f%%)";
 
 "menu.crop_custom" = "Custom...";
 
@@ -130,6 +134,8 @@
 
 "subtrack.no_loaded" = "No Subtitles Loaded";
 "subtrack.no_external" = "No External Subtitles Found";
+
+"sub_sync.sub_out_prefix" = "SYNC";
 
 // Alerts
 "alert.beta_channel.title" = "Receive Updates for Beta Versions";

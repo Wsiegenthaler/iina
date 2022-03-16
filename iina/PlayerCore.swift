@@ -92,6 +92,7 @@ class PlayerCore: NSObject {
   let backgroundQueue = DispatchQueue(label: "IINAPlayerCoreTask", qos: .background)
   let playlistQueue = DispatchQueue(label: "IINAPlaylistTask", qos: .utility)
   let thumbnailQueue = DispatchQueue(label: "IINAPlayerCoreThumbnailTask", qos: .utility)
+  let subSyncQueue = DispatchQueue(label: "IINASubSyncTask", qos: .userInitiated, attributes: .concurrent)
 
   /**
    This ticket will be increased each time before a new task being submitted to `backgroundQueue`.
@@ -140,6 +141,8 @@ class PlayerCore: NSObject {
   }
 
   static var keyBindings: [String: KeyMapping] = [:]
+  
+  var subSync: SubSyncController!
 
   override init() {
     super.init()
@@ -147,6 +150,8 @@ class PlayerCore: NSObject {
     self.mainWindow = MainWindowController(playerCore: self)
     self.miniPlayer = MiniPlayerWindowController(playerCore: self)
     self.initialWindow = InitialWindowController(playerCore: self)
+    self.miniPlayer = MiniPlayerWindowController(playerCore: self)
+    self.subSync = SubSyncController(player: self, queue: subSyncQueue)
     if #available(macOS 10.12.2, *) {
       self._touchBarSupport = TouchBarSupport(playerCore: self)
     }

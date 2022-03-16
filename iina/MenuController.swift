@@ -158,6 +158,7 @@ class MenuController: NSObject, NSMenuDelegate {
   @IBOutlet weak var subFont: NSMenuItem!
   @IBOutlet weak var findOnlineSub: NSMenuItem!
   @IBOutlet weak var saveDownloadedSub: NSMenuItem!
+  @IBOutlet weak var subSyncItem: NSMenuItem!
   // Window
   @IBOutlet weak var customTouchBar: NSMenuItem!
   @IBOutlet weak var inspector: NSMenuItem!
@@ -351,6 +352,9 @@ class MenuController: NSObject, NSMenuDelegate {
     findOnlineSub.action = #selector(MainMenuActionHandler.menuFindOnlineSub(_:))
     saveDownloadedSub.action = #selector(MainMenuActionHandler.saveDownloadedSub(_:))
 
+    subSyncItem.action = #selector(MainMenuActionHandler.subSync(_:))
+    PlayerCore.active.subSync.addHandler(MenuSubSyncHandler(subSyncItem))
+    
     // - text size
     [increaseTextSize, decreaseTextSize, resetTextSize].forEach {
       $0.action = #selector(MainMenuActionHandler.menuChangeSubScale(_:))
@@ -626,6 +630,7 @@ class MenuController: NSObject, NSMenuDelegate {
     }
   }
 
+  //TODO add sub sync key
   func updateKeyEquivalentsFrom(_ keyBindings: [KeyMapping]) {
     var settings: [(NSMenuItem, Bool, [String], Bool, ClosedRange<Double>?, String?)] = [
       (deleteCurrentFile, true, ["delete-current-file"], false, nil, nil),
@@ -715,4 +720,53 @@ class MenuController: NSObject, NSMenuDelegate {
       }
     }
   }
+  
+  //MARK: Subtitle syncronization handler
+  
+  class MenuSubSyncHandler: SubSyncControllerHandler, SubSyncTaskHandler, SubSyncProgressHandler {
+
+    let item: NSMenuItem
+    var isRunning: Bool = false
+    var progress: SubSyncProgress = 0.0
+        
+    init(_ item: NSMenuItem) {
+      self.item = item
+    }
+    
+    func handle(_ status: SubSyncTaskStatus) {
+      switch status {
+        
+        case .started:
+          isRunning = true
+          updateItem()
+            
+        case .finished:
+          isRunning = false
+          updateItem()
+        
+        default: break
+      }
+    }
+
+    func handle(_ progress: SubSyncProgress) {
+      self.progress = progress
+      updateItem()
+    }
+    
+    func handle(_ event: SubSyncPlayerEvent) {
+      switch event {
+        case .currentSubTrack(_, let canSync): updateItem(canSync: canSync)
+      }
+    }
+    
+    private func updateItem(canSync: Bool = true) {
+      if isRunning {
+        item.title = String(format: NSLocalizedString("menu.sub_sync.cancel", comment: "Cancel Sync (%.0f%%)"), progress * 100)
+      } else {
+        item.title = NSLocalizedString("menu.sub_sync.sync", comment: "Sync Current Subtitle")
+        item.isEnabled = canSync
+      }
+    }
+  }
+
 }

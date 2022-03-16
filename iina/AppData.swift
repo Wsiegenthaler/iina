@@ -44,6 +44,7 @@ struct AppData {
   static let historyFile = "history.plist"
   static let thumbnailCacheFolder = "thumb_cache"
   static let screenshotCacheFolder = "screenshot_cache"
+  static let subSyncCacheFolder = "subsync_cache"
 
   static let githubLink = "https://github.com/iina/iina"
   static let contributorsLink = "https://github.com/iina/iina/graphs/contributors"

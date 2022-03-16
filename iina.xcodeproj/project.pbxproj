@@ -155,6 +155,15 @@
 		84FBF23E1EF06A90003EA491 /* ThumbnailCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FBF23D1EF06A90003EA491 /* ThumbnailCache.swift */; };
 		8F49C36E213EFB7E0076C4F9 /* MiniPlayerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F49C370213EFB7E0076C4F9 /* MiniPlayerWindowController.xib */; };
 		9E47DAC01E3CFA6D00457420 /* DurationDisplayTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E47DABF1E3CFA6D00457420 /* DurationDisplayTextField.swift */; };
+		AD1D95F127E24E5200266951 /* SubSyncOSDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1D95EA27E24E5200266951 /* SubSyncOSDViewController.swift */; };
+		AD1D95F227E24E5200266951 /* SubSyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1D95EB27E24E5200266951 /* SubSyncTask.swift */; };
+		AD1D95F327E24E5200266951 /* SubSyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1D95EC27E24E5200266951 /* SubSyncController.swift */; };
+		AD1D95F427E24E5200266951 /* SubSyncOSDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1D95ED27E24E5200266951 /* SubSyncOSDViewController.xib */; };
+		AD1D95F527E24E5200266951 /* SubSyncExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1D95EE27E24E5200266951 /* SubSyncExtractor.swift */; };
+		AD1D95F627E24E5200266951 /* SubSyncCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1D95EF27E24E5200266951 /* SubSyncCache.swift */; };
+		AD1D95F727E24E5200266951 /* SubSyncProgressHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1D95F027E24E5200266951 /* SubSyncProgressHandler.swift */; };
+		AD1D95FC27E27FE500266951 /* libalass.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1D95FB27E27FE400266951 /* libalass.dylib */; };
+		AD1D95FD27E27FE500266951 /* libalass.dylib in Copy Dylibs */ = {isa = PBXBuildFile; fileRef = AD1D95FB27E27FE400266951 /* libalass.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B4E446E825CB53920069F06E /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = B4E446E725CB53920069F06E /* PromiseKit */; };
 		B4E446F225CB53FF0069F06E /* Gzip in Frameworks */ = {isa = PBXBuildFile; productRef = B4E446F125CB53FF0069F06E /* Gzip */; };
 		B4E446F725CB54EF0069F06E /* Mustache in Frameworks */ = {isa = PBXBuildFile; productRef = B4E446F625CB54EF0069F06E /* Mustache */; };
@@ -355,6 +364,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AD1D95FD27E27FE500266951 /* libalass.dylib in Copy Dylibs */,
 				E34C638F25B9220800DE53D2 /* libarchive.13.dylib in Copy Dylibs */,
 				E34C639025B9220800DE53D2 /* libass.9.dylib in Copy Dylibs */,
 				E34C639125B9220800DE53D2 /* libavcodec.58.dylib in Copy Dylibs */,
@@ -1011,8 +1021,6 @@
 		84BC786C1EEECBE30068BF17 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		84BC78BB1EEECBE30068BF17 /* postprocess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = postprocess.h; sourceTree = "<group>"; };
 		84BC78BC1EEECBE30068BF17 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
-		84BC78BE1EEECBE30068BF17 /* swresample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swresample.h; sourceTree = "<group>"; };
-		84BC78BF1EEECBE30068BF17 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		84BC78C11EEECBE30068BF17 /* swscale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swscale.h; sourceTree = "<group>"; };
 		84BC78C21EEECBE30068BF17 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		84BEEC3D1DFEDE2F00F945CA /* PrefKeyBindingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrefKeyBindingViewController.swift; sourceTree = "<group>"; };
@@ -1181,6 +1189,19 @@
 		9DB9ED5C20889D66006B1492 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/SubChooseViewController.strings; sourceTree = "<group>"; };
 		9E47DABF1E3CFA6D00457420 /* DurationDisplayTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationDisplayTextField.swift; sourceTree = "<group>"; };
 		9E63CAB61E3F7D0E00EA66C9 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		AD1D95EA27E24E5200266951 /* SubSyncOSDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubSyncOSDViewController.swift; sourceTree = "<group>"; };
+		AD1D95EB27E24E5200266951 /* SubSyncTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubSyncTask.swift; sourceTree = "<group>"; };
+		AD1D95EC27E24E5200266951 /* SubSyncController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubSyncController.swift; sourceTree = "<group>"; };
+		AD1D95ED27E24E5200266951 /* SubSyncOSDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubSyncOSDViewController.xib; sourceTree = "<group>"; };
+		AD1D95EE27E24E5200266951 /* SubSyncExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubSyncExtractor.swift; sourceTree = "<group>"; };
+		AD1D95EF27E24E5200266951 /* SubSyncCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubSyncCache.swift; sourceTree = "<group>"; };
+		AD1D95F027E24E5200266951 /* SubSyncProgressHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubSyncProgressHandler.swift; sourceTree = "<group>"; };
+		AD1D95F927E252EA00266951 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		AD1D95FA27E252EA00266951 /* swresample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swresample.h; sourceTree = "<group>"; };
+		AD1D95FB27E27FE400266951 /* libalass.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libalass.dylib; path = deps/lib/libalass.dylib; sourceTree = "<group>"; };
+		AD23DDF027EE70E0001E18D3 /* libonnxruntime.1.8.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libonnxruntime.1.8.1.dylib; path = deps/lib/libonnxruntime.1.8.1.dylib; sourceTree = "<group>"; };
+		AD23DDF327EE7DF0001E18D3 /* libalass.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libalass.dylib; path = deps/lib/libalass.dylib; sourceTree = "<group>"; };
+		AD23DDF427EE7DF0001E18D3 /* libonnxruntime.1.8.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libonnxruntime.1.8.1.dylib; path = deps/lib/libonnxruntime.1.8.1.dylib; sourceTree = "<group>"; };
 		B305513A2190B0C600D3F70E /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/MiniPlayerWindowController.strings; sourceTree = "<group>"; };
 		B3066F5F1F161538004D7559 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InitialWindowController.strings; sourceTree = "<group>"; };
 		B35E0A072107C0E500453AA7 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/PrefUtilsViewController.strings; sourceTree = "<group>"; };
@@ -1525,6 +1546,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD1D95FC27E27FE500266951 /* libalass.dylib in Frameworks */,
 				B4E4470125CE3F930069F06E /* Sparkle in Frameworks */,
 				84279D7525B6DF59003B008B /* libdav1d.5.dylib in Frameworks */,
 				E3B25F5724FF505D0068B9B0 /* libp11-kit.0.dylib in Frameworks */,
@@ -1697,6 +1719,8 @@
 		848290731D95978100C3C76C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD23DDF027EE70E0001E18D3 /* libonnxruntime.1.8.1.dylib */,
+				AD1D95FB27E27FE400266951 /* libalass.dylib */,
 				E3B25F2524FF505A0068B9B0 /* libarchive.13.dylib */,
 				E3B25F3C24FF505D0068B9B0 /* libass.9.dylib */,
 				E3B25F3D24FF505D0068B9B0 /* libavcodec.58.dylib */,
@@ -1820,6 +1844,7 @@
 		84A0BAA61D2FAF8400BC8DA1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				AD1D95F827E24E7000266951 /* SubSync */,
 				84A886E21E24F2D3008755BB /* Sub */,
 				8497A4831D2FF573005F504F /* iina-Bridging-Header.h */,
 				84A0BA9A1D2FAB4100BC8DA1 /* Parameter.swift */,
@@ -2064,8 +2089,8 @@
 		84BC78BD1EEECBE30068BF17 /* libswresample */ = {
 			isa = PBXGroup;
 			children = (
-				84BC78BE1EEECBE30068BF17 /* swresample.h */,
-				84BC78BF1EEECBE30068BF17 /* version.h */,
+				AD1D95FA27E252EA00266951 /* swresample.h */,
+				AD1D95F927E252EA00266951 /* version.h */,
 			);
 			path = libswresample;
 			sourceTree = "<group>";
@@ -2144,6 +2169,8 @@
 		84EB1ECD1D2F51D3004FA5A1 = {
 			isa = PBXGroup;
 			children = (
+				AD23DDF327EE7DF0001E18D3 /* libalass.dylib */,
+				AD23DDF427EE7DF0001E18D3 /* libonnxruntime.1.8.1.dylib */,
 				84EB1ED81D2F51D3004FA5A1 /* iina */,
 				E3DE8DCB1FD8166A0021921C /* iina-cli */,
 				49542976216C34950058F680 /* OpenInIINA */,
@@ -2218,6 +2245,20 @@
 				84FF84701D2FF698001B318A /* client.h */,
 			);
 			path = mpv;
+			sourceTree = "<group>";
+		};
+		AD1D95F827E24E7000266951 /* SubSync */ = {
+			isa = PBXGroup;
+			children = (
+				AD1D95EF27E24E5200266951 /* SubSyncCache.swift */,
+				AD1D95EC27E24E5200266951 /* SubSyncController.swift */,
+				AD1D95EE27E24E5200266951 /* SubSyncExtractor.swift */,
+				AD1D95EA27E24E5200266951 /* SubSyncOSDViewController.swift */,
+				AD1D95ED27E24E5200266951 /* SubSyncOSDViewController.xib */,
+				AD1D95F027E24E5200266951 /* SubSyncProgressHandler.swift */,
+				AD1D95EB27E24E5200266951 /* SubSyncTask.swift */,
+			);
+			name = SubSync;
 			sourceTree = "<group>";
 		};
 		E3DE8DCB1FD8166A0021921C /* iina-cli */ = {
@@ -2416,6 +2457,7 @@
 				E34E909A24F821280073BF04 /* GuideWindowController.xib in Resources */,
 				84AF03D21E67492C003E3753 /* Contribution.rtf in Resources */,
 				8400D5D21E1AB312006785F5 /* InspectorWindowController.xib in Resources */,
+				AD1D95F427E24E5200266951 /* SubSyncOSDViewController.xib in Resources */,
 				8400D5CC1E1AB2FF006785F5 /* PlaylistViewController.xib in Resources */,
 				8400D5ED1E1AB33F006785F5 /* PrefAdvancedViewController.xib in Resources */,
 				8400D5CF1E1AB306006785F5 /* CropSettingsViewController.xib in Resources */,
@@ -2490,6 +2532,7 @@
 				84D0FB7E1F5E519300C6A6A7 /* FreeSelectingViewController.swift in Sources */,
 				840D47A01DFEFC49000D9A64 /* KeyRecordView.swift in Sources */,
 				84791C8B1D405E9D0069E28A /* PlaybackInfo.swift in Sources */,
+				AD1D95F627E24E5200266951 /* SubSyncCache.swift in Sources */,
 				E322A4F820A8442E00C67D32 /* PlaylistPlaybackProgressView.swift in Sources */,
 				84D123B41ECAA405004E0D53 /* TouchBarSupport.swift in Sources */,
 				E36E8D7C24F6052F00B8C097 /* GuideWindowController.swift in Sources */,
@@ -2535,13 +2578,16 @@
 				84817C961DBDCA5F00CC2279 /* SettingsListCellView.swift in Sources */,
 				84A886F31E26CA24008755BB /* Regex.swift in Sources */,
 				8487BEC31D76A1AF00FD17B0 /* MenuController.swift in Sources */,
+				AD1D95F127E24E5200266951 /* SubSyncOSDViewController.swift in Sources */,
 				8450403D1E0A9EE20079C194 /* InspectorWindowController.swift in Sources */,
+				AD1D95F527E24E5200266951 /* SubSyncExtractor.swift in Sources */,
 				84C6D3671EB2A427009BF721 /* HistoryWindowController.swift in Sources */,
 				9E47DAC01E3CFA6D00457420 /* DurationDisplayTextField.swift in Sources */,
 				840AF5821E732C8F00F4AF92 /* JustXMLRPC.swift in Sources */,
 				E3513AF820EF79C500F8C347 /* PreferenceWindowController.swift in Sources */,
 				841A599D1E1FF5800079E177 /* SleepPreventer.swift in Sources */,
 				84ED99FF1E009C8100A5159B /* PrefAdvancedViewController.swift in Sources */,
+				AD1D95F227E24E5200266951 /* SubSyncTask.swift in Sources */,
 				840AF5841E73CE3900F4AF92 /* OpenSubSubtitle.swift in Sources */,
 				84AABE8B1DBF634600D138FD /* CharEncoding.swift in Sources */,
 				8488D6DC1E1167EF00D5B952 /* FloatingPointByteCountFormatter.swift in Sources */,
@@ -2555,6 +2601,7 @@
 				84C6D3641EB276E9009BF721 /* PlaybackHistory.swift in Sources */,
 				E3CB258F222799B800A62C47 /* MPVHook.swift in Sources */,
 				843FFD4D1D5DAA01001F3A44 /* RoundedTextFieldCell.swift in Sources */,
+				AD1D95F327E24E5200266951 /* SubSyncController.swift in Sources */,
 				8407D1401E3A684C0043895D /* ViewLayer.swift in Sources */,
 				84A0BA9B1D2FAB4100BC8DA1 /* Parameter.swift in Sources */,
 				84EB1F051D2F5C5B004FA5A1 /* AppData.swift in Sources */,
@@ -2572,6 +2619,7 @@
 				841B14281E941DFF00744AB8 /* TimeLabelOverflowedStackView.swift in Sources */,
 				E33BA5C7204BD9FE0069A0F6 /* SubChooseViewController.swift in Sources */,
 				8460FBA91D6497490081841B /* PlaylistViewController.swift in Sources */,
+				AD1D95F727E24E5200266951 /* SubSyncProgressHandler.swift in Sources */,
 				8450404A1E0B13230079C194 /* CropBoxView.swift in Sources */,
 				84F7258F1D486185000DEF1B /* MPVProperty.swift in Sources */,
 				84A0BA971D2FA1CE00BC8DA1 /* PlayerCore.swift in Sources */,
@@ -3838,6 +3886,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MARKETING_VERSION = 1.2.0;
 				MODULEMAP_FILE = module.modulemap;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.colliderli.iina;

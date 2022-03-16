@@ -388,6 +388,17 @@ class Utility {
     return url
   }()
 
+  static let subSyncCacheURL: URL = {
+    // get path
+    let cachesPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
+    Logger.ensure(cachesPath.count >= 1, "Cannot get path to Caches directory")
+    let bundleID = Bundle.main.bundleIdentifier!
+    let appCachesUrl = cachesPath.first!.appendingPathComponent(bundleID, isDirectory: true)
+    let appSubSyncCacheUrl = appCachesUrl.appendingPathComponent(AppData.subSyncCacheFolder, isDirectory: true)
+    createDirIfNotExist(url: appSubSyncCacheUrl)
+    return appSubSyncCacheUrl
+  }()
+
   static let playbackHistoryURL: URL = {
     return Utility.appSupportDirUrl.appendingPathComponent(AppData.historyFile, isDirectory: false)
   }()

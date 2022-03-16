@@ -108,6 +108,10 @@ class QuickSettingViewController: NSViewController, NSTableViewDataSource, NSTab
   @IBOutlet weak var audioEqSlider9: NSSlider!
   @IBOutlet weak var audioEqSlider10: NSSlider!
 
+  @IBOutlet weak var subSyncBtn: NSButton!
+  @IBOutlet weak var subSyncProgress: NSProgressIndicator!
+  @IBOutlet weak var subSyncCancelBtn: NSButton!
+
   @IBOutlet weak var subScaleSlider: NSSlider!
   @IBOutlet weak var subScaleResetBtn: NSButton!
   @IBOutlet weak var subPosSlider: NSSlider!
@@ -163,6 +167,9 @@ class QuickSettingViewController: NSViewController, NSTableViewDataSource, NSTab
       self.subTableView.reloadData()
       self.secSubTableView.reloadData()
     }
+    
+    // subsync
+    player.subSync.addHandler(QuickSettingViewSubSyncHandler(self))
   }
 
   // MARK: - Validate UI
@@ -417,6 +424,54 @@ class QuickSettingViewController: NSViewController, NSTableViewDataSource, NSTab
     reload()
   }
 
+  // MARK: Synchronize subtitles
+  
+  @IBAction func subSyncBtnAction(_ sender: AnyObject) {
+    player.subSync.sync()
+  }
+  
+  @IBAction func subSyncCancelBtnAction(_ sender: AnyObject) {
+    player.subSync.cancel()
+  }
+  
+  class QuickSettingViewSubSyncHandler: SubSyncTaskHandler, SubSyncControllerHandler {
+    
+    let ctrl: QuickSettingViewController
+        
+    init(_ ctrl: QuickSettingViewController) {
+      self.ctrl = ctrl
+    }
+    
+    func handle(_ status: SubSyncTaskStatus) {
+      switch status {
+        
+        case .starting:
+          subSyncState(inProgress: true)
+          ctrl.subSyncProgress.startAnimation(self)
+
+        case .finished:
+          subSyncState(inProgress: false)
+          ctrl.subSyncProgress.stopAnimation(self)
+        
+        default: break
+      }
+    }
+    
+    func handle(_ event: SubSyncPlayerEvent) {
+      switch event {
+        case .currentSubTrack(_, let canSync):
+          ctrl.subSyncBtn.isEnabled = canSync
+      }
+    }
+    
+    private func subSyncState(inProgress: Bool) {
+      ctrl.subSyncBtn.isHidden = inProgress
+      ctrl.subSyncCancelBtn.isHidden = !inProgress
+      ctrl.subSyncProgress.isHidden = !inProgress
+    }
+  }
+
+  
   // MARK: Video tab
 
   @IBAction func aspectChangedAction(_ sender: NSSegmentedControl) {
